@@ -1,7 +1,15 @@
 import { Router } from "express";
-import { register, login, logout, getMe } from "../controllers/auth.controller";
-import { validateRegister, validateLogin } from "../validations/auth.validation";
-import { protect } from "../middleware/protect";
+import {
+  validateLogin,
+  validateRegister,
+} from "../Validators/auth.validators.ts";
+import { protect } from "../MiddleWares/protect.ts";
+import {
+  getMe,
+  login,
+  logout,
+  register,
+} from "../Controllers/auth.controller.ts";
 
 const router = Router();
 

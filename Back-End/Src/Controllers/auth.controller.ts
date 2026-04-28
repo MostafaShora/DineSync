@@ -1,13 +1,17 @@
-import { Request, Response, NextFunction } from "express";
-import User from "../models/user.model";
-import { hashPassword, comparePassword } from "../utils/hashPassword";
-import { generateAccessToken } from "../utils/generateToken";
-import { AppError } from "../middleware/errorHandler";
+import type { NextFunction, Request, Response } from "express";
+import { AppError } from "../MiddleWares/errorHandler.ts";
+import { comparePassword, hashPassword } from "../Utils/hashPassword.ts";
+import { generateAccessToken } from "../Utils/generateToken.ts";
+import User from "../Models/user.model.ts";
 
+// @access  Public
 // @desc    Register new user
 // @route   POST /api/auth/register
-// @access  Public
-export const register = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+export const register = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
   try {
     const { name, email, password } = req.body;
 
@@ -18,7 +22,7 @@ export const register = async (req: Request, res: Response, next: NextFunction):
     }
 
     // Hash password
-    const hashed  = await hashPassword(password);
+    const hashed = await hashPassword(password);
 
     // Create user
     const user = await User.create({ name, email, password: hashed });
@@ -45,7 +49,11 @@ export const register = async (req: Request, res: Response, next: NextFunction):
 // @desc    Login user
 // @route   POST /api/auth/login
 // @access  Public
-export const login = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+export const login = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
   try {
     const { email, password } = req.body;
 
@@ -98,7 +106,11 @@ export const logout = (req: Request, res: Response): void => {
 // @desc    Get current logged in user
 // @route   GET /api/auth/me
 // @access  Private
-export const getMe = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+export const getMe = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
   try {
     const user = await User.findById(req.user?._id).select("-password");
     if (!user) {

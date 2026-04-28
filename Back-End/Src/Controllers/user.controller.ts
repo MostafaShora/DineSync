@@ -1,14 +1,17 @@
-import { Request, Response, NextFunction } from "express";
-import User from "../models/user.model";
-import { AppError } from "../middleware/errorHandler";
+import type { NextFunction, Request, Response } from "express";
+import User from "../Models/user.model.ts";
+import { AppError } from "../MiddleWares/errorHandler.ts";
 
 // @desc    Get all users
 // @route   GET /api/users
 // @access  Admin
-export const getAllUsers = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+export const getAllUsers = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
   try {
     const users = await User.find().select("-password");
-
     res.status(200).json({
       success: true,
       count: users.length,
@@ -22,7 +25,11 @@ export const getAllUsers = async (req: Request, res: Response, next: NextFunctio
 // @desc    Get single user
 // @route   GET /api/users/:id
 // @access  Admin
-export const getUserById = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+export const getUserById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
   try {
     const user = await User.findById(req.params.id).select("-password");
     if (!user) {
@@ -41,14 +48,18 @@ export const getUserById = async (req: Request, res: Response, next: NextFunctio
 // @desc    Update user role
 // @route   PUT /api/users/:id/role
 // @access  Admin
-export const updateUserRole = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+export const updateUserRole = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
   try {
     const { role } = req.body;
 
     const user = await User.findByIdAndUpdate(
       req.params.id,
       { role },
-      { new: true }
+      { new: true },
     ).select("-password");
 
     if (!user) {
@@ -68,12 +79,16 @@ export const updateUserRole = async (req: Request, res: Response, next: NextFunc
 // @desc    Ban user
 // @route   PUT /api/users/:id/ban
 // @access  Admin
-export const banUser = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+export const banUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
   try {
     const user = await User.findByIdAndUpdate(
       req.params.id,
       { isBanned: true },
-      { new: true }
+      { new: true },
     ).select("-password");
 
     if (!user) {
@@ -93,7 +108,11 @@ export const banUser = async (req: Request, res: Response, next: NextFunction): 
 // @desc    Delete user
 // @route   DELETE /api/users/:id
 // @access  Admin
-export const deleteUser = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+export const deleteUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
   try {
     const user = await User.findByIdAndDelete(req.params.id);
     if (!user) {
@@ -107,4 +126,30 @@ export const deleteUser = async (req: Request, res: Response, next: NextFunction
   } catch (error) {
     next(error);
   }
+};
+
+// 👤 current user
+export const getMe = async (req: Request, res: Response) => {
+  const user = await User.findById(req.user.id).select("-password");
+
+  res.status(200).json({
+    success: true,
+    user,
+  });
+};
+
+// ✏️ update profile
+export const updateMe = async (req: Request, res: Response) => {
+  const { name, email, phone } = req.body;
+
+  const user = await User.findByIdAndUpdate(
+    req.user.id,
+    { name, email, phone },
+    { new: true },
+  ).select("-password");
+
+  res.status(200).json({
+    success: true,
+    user,
+  });
 };

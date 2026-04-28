@@ -1,4 +1,5 @@
-import { redirect } from "next/navigation";
+import Dashboard from "@/Src/Pages/Admin/Deshboard";
+
 export default function Home() {
-  redirect("/register");
+  return <Dashboard />;
 }

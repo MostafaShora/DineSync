@@ -1,5 +1,6 @@
 "use client";
 
+import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FaCoffee, FaFacebook } from "react-icons/fa";
@@ -41,25 +42,30 @@ export default function LoginPage() {
     try {
       setLoading(true);
 
-      const res = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
+      const res = await axios.post("http://localhost:8000/api/auth/login", {
+        email,
+        password,
       });
 
-      const data = await res.json();
+      const data = res.data;
 
-      if (!res.ok) {
-        setError(data.message || "Login failed");
-        return;
-      }
+      const user = data.user || data;
+      const token = data.token;
+
+      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("token", token);
 
       console.log("Login success:", data);
-    } catch (error: unknown) {
+
+      router.push("/profile");
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        setError(error.response?.data?.message || "Login failed");
+      } else {
+        setError("Unexpected error");
+      }
+
       console.error(error);
-      setLoading(false);
     } finally {
       setLoading(false);
     }

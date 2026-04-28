@@ -1,5 +1,5 @@
-import { Request, Response, NextFunction } from "express";
-import { AppError } from "../middleware/errorHandler";
+import type { NextFunction, Request, Response } from "express";
+import { AppError } from "../MiddleWares/errorHandler.ts";
 
 export const validateRegister = (req: Request, res: Response, next: NextFunction): void => {
   const { name, email, password } = req.body;

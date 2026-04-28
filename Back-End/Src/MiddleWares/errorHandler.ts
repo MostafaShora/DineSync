@@ -1,4 +1,5 @@
-import { Request, Response, NextFunction } from "express";
+import type { NextFunction, Request, Response } from "express";
+
 
 // Custom Error Class
 export class AppError extends Error {
@@ -28,25 +29,21 @@ export const errorHandler = (
   let statusCode = err.statusCode || 500;
   let message = err.message || "Internal Server Error";
 
-  // Mongoose: ID غلط
   if (err.name === "CastError") {
     statusCode = 400;
     message = "Invalid ID format";
   }
 
-  // Mongoose: قيمة متكررة (email موجود)
   if (err.name === "MongoServerError" && (err as any).code === 11000) {
     statusCode = 400;
     message = "Email already exists";
   }
 
-  // JWT: توكن غلط
   if (err.name === "JsonWebTokenError") {
     statusCode = 401;
     message = "Invalid token, please login again";
   }
 
-  // JWT: توكن انتهت صلاحيته
   if (err.name === "TokenExpiredError") {
     statusCode = 401;
     message = "Token expired, please login again";

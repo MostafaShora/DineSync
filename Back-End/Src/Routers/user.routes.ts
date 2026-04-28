@@ -1,24 +1,11 @@
 import { Router } from "express";
-import {
-  getAllUsers,
-  getUserById,
-  updateUserRole,
-  banUser,
-  deleteUser,
-} from "../controllers/user.controller";
-import { protect } from "../middleware/protect";
-import { adminOnly } from "../middleware/adminOnly";
-import { validateUpdateRole } from "../validations/user.validation";
+import { protect } from "../MiddleWares/protect.ts";
+import { getMe, updateMe } from "../Controllers/user.controller.ts";
 
 const router = Router();
 
-// All routes below are Private + Admin Only
-router.use(protect, adminOnly);
-
-router.get("/", getAllUsers);
-router.get("/:id", getUserById);
-router.put("/:id/role", validateUpdateRole, updateUserRole);
-router.put("/:id/ban", banUser);
-router.delete("/:id", deleteUser);
+// 👇 logged-in user only
+router.get("/me", protect, getMe);
+router.put("/me", protect, updateMe);
 
 export default router;

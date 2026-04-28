@@ -1,12 +1,25 @@
-import express from "express";
+import app from "./Src/app.ts";
 import dotenv from "dotenv";
 import { ConnectDB } from "./Src/Configs/DB.ts";
 
-const app = express();
-app.use(express.json());
-dotenv.config();
-ConnectDB();
 
-app.listen(4000, () => {
-  console.log("Server is on port 4000....");
-});
+dotenv.config({ quiet: false });
+
+
+
+const StartServer = async () => {
+  try {
+    await ConnectDB();
+
+    const PORT = process.env.PORT || 8000;
+
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+  } catch (error) {
+    console.error("Fatal Error:", error);
+    process.exit(1);
+  }
+};
+
+StartServer();

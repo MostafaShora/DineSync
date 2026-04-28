@@ -1,5 +1,6 @@
 "use client";
 
+import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FaCoffee } from "react-icons/fa";
@@ -28,30 +29,28 @@ export default function RegisterPage() {
     try {
       setLoading(true);
 
-      const res = await fetch("/api/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          phone,
-          password,
-        }),
+      const res = await axios.post("http://localhost:8000/api/auth/register", {
+        name,
+        email,
+        phone,
+        password,
       });
 
-      const data = await res.json();
+      const data = res.data;
 
-      if (!res.ok) {
-        setError(data.message || "Something went wrong");
-        return;
-      }
+      const user = data.user || data;
+      const token = data.token;
+
+      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("token", token);
 
       console.log("User created:", data);
-    } catch (error: unknown) {
-      console.error(error);
-      setLoading(false);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        setError(error.response?.data?.message || "Something went wrong");
+      } else {
+        setError("Unexpected error");
+      }
     } finally {
       setLoading(false);
     }
