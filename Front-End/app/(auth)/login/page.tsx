@@ -1,5 +1,6 @@
 "use client";
 
+import { useAuth } from "@/Src/context/AuthContext";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -17,6 +18,7 @@ import { HiSparkles } from "react-icons/hi";
 import { MdRestaurant } from "react-icons/md";
 
 export default function LoginPage() {
+  const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -52,12 +54,12 @@ export default function LoginPage() {
       const user = data.user || data;
       const token = data.token;
 
-      localStorage.setItem("user", JSON.stringify(user));
+      login(user);
       localStorage.setItem("token", token);
 
       console.log("Login success:", data);
 
-      router.push("/profile");
+      router.push("/");
     } catch (error) {
       if (axios.isAxiosError(error)) {
         setError(error.response?.data?.message || "Login failed");

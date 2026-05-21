@@ -1,8 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  allowedDevOrigins: ["10.206.219.193"],
   images: {
-    domains: ["via.placeholder.com"],
+    domains: [
+      "images.unsplash.com",
+      "lh3.googleusercontent.com",
+      "cdn.pixabay.com",
+    ],
   },
 };
 

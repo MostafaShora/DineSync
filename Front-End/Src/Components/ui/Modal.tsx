@@ -46,12 +46,12 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }) => {
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/25 backdrop-blur-sm p-4 sm:p-6 no-print transition-all duration-300 ease-[cubic-bezier(0.25,0.8,0.25,1)]"
+      className="fixed inset-0 z-100 flex items-center justify-center bg-slate-900/25 backdrop-blur-sm p-4 sm:p-6 no-print transition-all duration-300 ease-[cubic-bezier(0.25,0.8,0.25,1)]"
       dir="rtl"
       onClick={handleBackdropClick}
     >
       {/* Modal container */}
-      <div className="bg-[#f0ebd8]/95 backdrop-blur-xl border border-white/40 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] rounded-[32px] w-full max-w-xl overflow-hidden flex flex-col max-h-[90vh] animate-in fade-in zoom-in-95">
+      <div className="bg-[#f0ebd8]/95 backdrop-blur-xl border border-white/40 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] rounded-4xl w-full max-w-xl overflow-hidden flex flex-col max-h-[90vh] animate-in fade-in zoom-in-95">
         {/* Header */}
         <div className="px-7 py-5 border-b border-[#0A3622]/10 flex justify-between items-center shrink-0">
           <h3 className="text-xl font-bold text-[#0A3622] tracking-tight">

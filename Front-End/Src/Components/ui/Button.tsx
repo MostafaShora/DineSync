@@ -65,7 +65,7 @@ const Button: React.FC<ButtonProps> = ({
       className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
     >
       {icon && (
-        <span className="flex-shrink-0 flex items-center justify-center transition-transform group-hover:scale-110">
+        <span className="shrink-0 flex items-center justify-center transition-transform group-hover:scale-110">
           {icon}
         </span>
       )}

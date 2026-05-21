@@ -9,7 +9,6 @@ import Button from "@/Src/Components/ui/Button";
 import Modal from "@/Src/Components/ui/Modal";
 import Badge from "@/Src/Components/ui/Badge";
 
-
 const MenuManager: React.FC = () => {
   const { products, setProducts, settings } = useGlobal() as {
     products: Product[];
@@ -40,7 +39,7 @@ const MenuManager: React.FC = () => {
         ),
       );
     } else {
-      //   setProducts([{ ...form, id: crypto.randomUUID() }, ...products]); // هنا بسبب number 
+      //   setProducts([{ ...form, id: crypto.randomUUID() }, ...products]); // هنا بسبب number
     }
 
     closeModal();
@@ -83,7 +82,7 @@ const MenuManager: React.FC = () => {
       dir="rtl"
     >
       {/* Header */}
-      <div className="bg-white/60 backdrop-blur-xl flex flex-col sm:flex-row justify-between items-start sm:items-center p-6 rounded-[2rem] shadow-[0_8px_30px_rgba(0,0,0,0.03)] border border-white/80 gap-4">
+      <div className="bg-white/60 backdrop-blur-xl flex flex-col sm:flex-row justify-between items-start sm:items-center p-6 rounded-4xl shadow-[0_8px_30px_rgba(0,0,0,0.03)] border border-white/80 gap-4">
         <div>
           <h3 className="text-3xl font-black text-[#0A3622] tracking-tight">
             المنيو الرقمي
@@ -107,7 +106,7 @@ const MenuManager: React.FC = () => {
         {products.map((p) => (
           <div
             key={p.id}
-            className="bg-white/60 backdrop-blur-lg rounded-[2rem] overflow-hidden flex flex-col group relative shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-white/80 transition-all duration-500 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:-translate-y-1.5"
+            className="bg-white/60 backdrop-blur-lg rounded-4xl overflow-hidden flex flex-col group relative shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-white/80 transition-all duration-500 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:-translate-y-1.5"
           >
             {/* Image */}
             <div className="h-48 bg-slate-100 relative overflow-hidden">
@@ -170,7 +169,7 @@ const MenuManager: React.FC = () => {
         <form onSubmit={handleSave} className="space-y-6">
           {/* Preview */}
           {form.image ? (
-            <div className="w-full h-52 bg-slate-100 rounded-[2rem] overflow-hidden shadow-inner mb-2 relative group">
+            <div className="w-full h-52 bg-slate-100 rounded-4xl overflow-hidden shadow-inner mb-2 relative group">
               <Image
                 src={form.image}
                 alt="Preview"
@@ -182,7 +181,7 @@ const MenuManager: React.FC = () => {
               </div>
             </div>
           ) : (
-            <div className="w-full h-52 bg-slate-50 rounded-[2rem] border-2 border-slate-200 border-dashed flex flex-col items-center justify-center mb-2 gap-3">
+            <div className="w-full h-52 bg-slate-50 rounded-4xl border-2 border-slate-200 border-dashed flex flex-col items-center justify-center mb-2 gap-3">
               <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-sm">
                 <FiImage size={24} className="text-slate-300" />
               </div>

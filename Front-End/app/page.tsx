@@ -1,5 +1,10 @@
-import Dashboard from "@/Src/Pages/Admin/Deshboard";
+"use client";
+import HomePage from "@/Src/Sections/HomePage";
 
 export default function Home() {
-  return <Dashboard />;
+  return (
+    <div className="">
+      <HomePage />
+    </div>
+  );
 }
