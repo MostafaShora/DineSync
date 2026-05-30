@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
-import ProfileModal from "@/Src/Components/features/ProfileModal";
+import ProfileModal from "@/app/Pages/clients/Src/Components/features/ProfileModal";
+import { BsFillLeafFill } from "react-icons/bs";
 
 export default function ProfilePage() {
   const [open, setOpen] = useState(false);
@@ -98,19 +99,33 @@ export default function ProfilePage() {
   return (
     <div className="min-h-screen bg-linear-to-br from-[#f8f1de] via-[#f5ecd6] to-[#efe3c2] text-[#062b12]">
       {/* HEADER */}
-      <header className="flex justify-between items-center px-8 py-6 backdrop-blur-xl bg-white/30 border-b border-white/40">
-        <h1 className="text-lg font-[Cormorant_Garamond] tracking-wide font-semibold">
-          Artisanal Ledger
-        </h1>
+      <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-2xl bg-white/60 border-b border-black/5">
+        <div className="max-w-7xl mx-auto h-18 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
+          {/* BRAND */}
+          <div className="flex items-center gap-3 sm:gap-4">
+            {/* LOGO */}
+            <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-[#0A3622]/10 flex items-center justify-center overflow-hidden shadow-sm">
+              {/* glow */}
+              <div className="absolute inset-0 bg-[#0A3622]/10 blur-xl opacity-70" />
 
-        <div className="flex gap-3 text-xl">
-          <button className="hover:scale-110 transition">←</button>
-          <button className="hover:scale-110 transition">🔔</button>
+              <BsFillLeafFill className="relative w-6 h-6 sm:w-7 sm:h-7 text-[#0A3622]" />
+            </div>
+
+            {/* TEXT */}
+            <div className="flex flex-col leading-none">
+              <h1 className="text-[#061b0e] font-black tracking-[0.25em] text-sm sm:text-lg md:text-xl">
+                DINE SYNC
+              </h1>
+
+              <span className="text-[9px] sm:text-[10px] md:text-xs tracking-[0.35em] text-gray-500 mt-1">
+                SMART ORDER SYSTEM
+              </span>
+            </div>
+          </div>
         </div>
       </header>
-
       {/* MAIN */}
-      <main className="max-w-6xl mx-auto px-6 py-10 space-y-8">
+      <main className="max-w-6xl mx-auto px-6 py-10 space-y-8 mt-16">
         {/* HERO GLASS CARD */}
         <section className="relative overflow-hidden rounded-3xl border border-white/40 bg-white/20 backdrop-blur-2xl shadow-xl p-8">
           <div className="flex flex-col md:flex-row items-center gap-8">
@@ -147,7 +162,7 @@ export default function ProfilePage() {
                 <button
                   onClick={() => {
                     localStorage.clear();
-                    window.location.href = "/login";
+                    window.location.href = "/";
                   }}
                   className="px-6 py-3 rounded-xl bg-white/60 border hover:bg-white/80 transition"
                 >

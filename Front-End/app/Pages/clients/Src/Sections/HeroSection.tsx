@@ -5,11 +5,15 @@ import { GiCroissant } from "react-icons/gi";
 import Link from "next/link";
 
 const categories = [
-  { name: "Coffee", icon: <FiCoffee /> },
-  { name: "Cold Drinks", icon: <MdOutlineLocalDrink /> },
-  { name: "Desserts", icon: <FaIceCream /> },
-  { name: "Bakery", icon: <GiCroissant /> },
-  { name: "All Menu", icon: <FiGrid /> },
+  { name: "Coffee", icon: <FiCoffee />, href: "/" },
+  { name: "Cold Drinks", icon: <MdOutlineLocalDrink />, href: "/" },
+  { name: "Desserts", icon: <FaIceCream />, href: "/" },
+  { name: "Bakery", icon: <GiCroissant />, href: "/" },
+  {
+    name: "All Menu",
+    icon: <FiGrid />,
+    href: "/Pages/clients/Src/Pages/static-menu",
+  },
 ];
 
 export default function HeroSection() {
@@ -154,35 +158,36 @@ export default function HeroSection() {
       <div className="max-w-5xl mx-auto bg-white border border-black/10 rounded-2xl p-4 shadow-sm">
         <div className="flex gap-3 overflow-x-auto pb-2 hide-scrollbar">
           {categories.map((c) => (
-            <button
+            <Link
+              href={c.href}
               key={c.name}
               className="
-                min-w-37.5
-                flex flex-col items-center justify-center gap-2
-                px-5 py-5
-                rounded-2xl
+    min-w-37.5
+    flex flex-col items-center justify-center gap-2
+    px-5 py-5
+    rounded-2xl
 
-                bg-white
-                border border-black/10
+    bg-white
+    border border-black/10
 
-                hover:-translate-y-1
-                hover:shadow-md
+    hover:-translate-y-1
+    hover:shadow-md
 
-                transition-all duration-300
-                group
-              "
+    transition-all duration-300
+    group
+  "
             >
               {/* icon */}
               <div
                 className="
-                w-11 h-11
-                rounded-xl
-                bg-[#123A2B]/10
-                grid place-items-center
-                text-[#123A2B]
-                group-hover:scale-110
-                transition
-              "
+      w-11 h-11
+      rounded-xl
+      bg-[#123A2B]/10
+      grid place-items-center
+      text-[#123A2B]
+      group-hover:scale-110
+      transition
+    "
               >
                 <span className="text-xl">{c.icon}</span>
               </div>
@@ -190,7 +195,7 @@ export default function HeroSection() {
               <span className="text-sm font-medium text-black/80">
                 {c.name}
               </span>
-            </button>
+            </Link>
           ))}
         </div>
       </div>

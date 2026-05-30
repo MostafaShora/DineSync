@@ -1,11 +1,13 @@
 "use client";
 
-import { useAuth } from "@/Src/context/AuthContext";
+import { useAuth } from "@/app/Pages/clients/Src/context/AuthContext";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+
 import { FaCoffee, FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
+
 import {
   FiArrowRight,
   FiEye,
@@ -14,28 +16,43 @@ import {
   FiLock,
   FiMail,
 } from "react-icons/fi";
+
 import { HiSparkles } from "react-icons/hi";
 import { MdRestaurant } from "react-icons/md";
 
 export default function LoginPage() {
   const { login } = useAuth();
+
+  const router = useRouter();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const [showPassword, setShowPassword] = useState(false);
+
   const [loading, setLoading] = useState(false);
+
   const [error, setError] = useState("");
 
+  // =========================
+  // VALIDATE EMAIL
+  // =========================
   const validateEmail = (email: string) =>
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
 
+  // =========================
+  // LOGIN
+  // =========================
   const handleLogin = async () => {
     setError("");
 
+    // EMAIL VALIDATION
     if (!validateEmail(email)) {
       setError("Invalid email format");
       return;
     }
 
+    // PASSWORD VALIDATION
     if (password.length < 6) {
       setError("Password must be at least 6 characters");
       return;
@@ -44,6 +61,7 @@ export default function LoginPage() {
     try {
       setLoading(true);
 
+      // API REQUEST
       const res = await axios.post("http://localhost:8000/api/auth/login", {
         email,
         password,
@@ -52,14 +70,28 @@ export default function LoginPage() {
       const data = res.data;
 
       const user = data.user || data;
+
       const token = data.token;
 
+      // SAVE USER
       login(user);
+
+      // SAVE TOKEN
       localStorage.setItem("token", token);
+
+      // OPTIONAL
+      localStorage.setItem("user", JSON.stringify(user));
 
       console.log("Login success:", data);
 
-      router.push("/");
+      // =========================
+      // ROLE BASED REDIRECT
+      // =========================
+      if (user.role === "admin") {
+        router.push("/Pages/admin/src/libs");
+      } else {
+        router.push("/");
+      }
     } catch (error) {
       if (axios.isAxiosError(error)) {
         setError(error.response?.data?.message || "Login failed");
@@ -72,7 +104,6 @@ export default function LoginPage() {
       setLoading(false);
     }
   };
-  const router = useRouter();
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#F5F0E8] px-6 py-12 relative overflow-hidden">
@@ -110,7 +141,8 @@ export default function LoginPage() {
               and orders seamlessly.
             </p>
           </div>
-          {/* Email */}
+
+          {/* EMAIL */}
           <div className="mb-5">
             <label className="block text-[10px] tracking-[0.2em] mb-2 text-[#1C1C1A]/80">
               EMAIL ADDRESS
@@ -125,13 +157,13 @@ export default function LoginPage() {
                 type="email"
                 placeholder="manager@roastrelish.com"
                 className="w-full bg-[#E8E2D5] rounded-2xl py-3.5 px-4 pl-11 text-sm outline-none border border-transparent
-            focus:border-[#4A7C59] focus:bg-white focus:shadow-[0_0_0_4px_rgba(74,124,89,0.10)]
-            transition-all duration-200"
+                focus:border-[#4A7C59] focus:bg-white focus:shadow-[0_0_0_4px_rgba(74,124,89,0.10)]
+                transition-all duration-200"
               />
             </div>
           </div>
 
-          {/* Password */}
+          {/* PASSWORD */}
           <div className="mb-5">
             <label className="block text-[10px] tracking-[0.2em] mb-2 text-[#1C1C1A]/80">
               PASSWORD
@@ -146,9 +178,10 @@ export default function LoginPage() {
                 type={showPassword ? "text" : "password"}
                 placeholder="*********"
                 className="w-full bg-[#E8E2D5] rounded-2xl py-3.5 px-4 pl-11 pr-11 text-sm outline-none border border-transparent
-            focus:border-[#4A7C59] focus:bg-white focus:shadow-[0_0_0_4px_rgba(74,124,89,0.10)]
-            transition-all duration-200"
+                focus:border-[#4A7C59] focus:bg-white focus:shadow-[0_0_0_4px_rgba(74,124,89,0.10)]
+                transition-all duration-200"
               />
+
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
@@ -158,6 +191,8 @@ export default function LoginPage() {
               </button>
             </div>
           </div>
+
+          {/* REMEMBER + FORGOT */}
           <div className="flex items-center justify-between mb-5">
             <label className="flex items-center gap-2 text-sm text-[#4A4A45]">
               <input type="checkbox" className="accent-[#4A7C59]" />
@@ -173,22 +208,22 @@ export default function LoginPage() {
             </button>
           </div>
 
-          {/* Error */}
+          {/* ERROR */}
           {error && (
             <div className="text-[#C25A3A] text-sm mb-4 bg-[#F8E9E3] px-3 py-2 rounded-[10px]">
               {error}
             </div>
           )}
 
-          {/* Button */}
+          {/* LOGIN BUTTON */}
           <button
             onClick={handleLogin}
             disabled={loading}
             className="w-full bg-[#4A7C59] text-white rounded-2xl py-3.5 text-[16px] font-serif font-bold
-  flex items-center justify-center gap-2
-  hover:bg-[#3A6348] active:scale-[0.99]
-  transition-all duration-200 mb-5 shadow-[0_10px_25px_rgba(74,124,89,0.25)]
-  disabled:opacity-60 disabled:cursor-not-allowed"
+            flex items-center justify-center gap-2
+            hover:bg-[#3A6348] active:scale-[0.99]
+            transition-all duration-200 mb-5 shadow-[0_10px_25px_rgba(74,124,89,0.25)]
+            disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {loading ? (
               <span className="flex items-center gap-2">
@@ -201,28 +236,33 @@ export default function LoginPage() {
               </span>
             )}
           </button>
+
+          {/* DIVIDER */}
           <div className="flex items-center gap-4 mb-5">
             <div className="flex-1 h-px bg-linear-to-r from-transparent to-[#E8E2D5]" />
+
             <span className="text-[10px] text-[#9A9A90] bg-white px-3 rounded-full border border-[#E8E2D5]">
               OR
             </span>
+
             <div className="flex-1 h-px bg-linear-to-l from-transparent to-[#E8E2D5]" />
           </div>
 
-          {/* Social */}
+          {/* SOCIAL LOGIN */}
           <div className="flex gap-3">
             <button
               className="flex-1 border border-[#E8E2D5] bg-white rounded-2xl py-3 text-sm 
-    hover:bg-[#F5F0E8] transition flex items-center justify-center gap-2
-    active:scale-[0.98]"
+              hover:bg-[#F5F0E8] transition flex items-center justify-center gap-2
+              active:scale-[0.98]"
             >
               <FcGoogle size={18} />
               Google
             </button>
+
             <button
               className="flex-1 border border-[#E8E2D5] bg-white rounded-2xl py-3 text-sm 
-  hover:bg-[#F5F0E8] transition flex items-center justify-center gap-2
-  active:scale-[0.98]"
+              hover:bg-[#F5F0E8] transition flex items-center justify-center gap-2
+              active:scale-[0.98]"
             >
               <FaFacebook size={18} className="text-[#1877F2]" />
               Facebook

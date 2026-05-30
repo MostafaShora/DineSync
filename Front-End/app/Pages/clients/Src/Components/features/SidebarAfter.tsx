@@ -15,7 +15,7 @@ import {
 export default function SidebarAfter() {
   return (
     <aside>
-      <div className="bg-[#EFE6D6]/70 rounded-2xl p-6 flex flex-col min-h-[calc(100vh-48px)]">
+      <div className="bg-[#EFE6D6]/70 rounded-2xl p-5 flex flex-col h-[calc(100vh-48px)] shadow-sm">
         {/* LOGO */}
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-[#123A2B]/10 grid place-items-center">
@@ -36,7 +36,7 @@ export default function SidebarAfter() {
           </button>
 
           <Link
-            href="/Pages/clients/StaticMenuPage"
+            href="/Pages/clients/Src/Pages/static-menu"
             className="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-[#FBF7F0]"
           >
             <FiMenu className="w-5 h-5 text-[#121212]" />
@@ -58,7 +58,7 @@ export default function SidebarAfter() {
             <span className="text-[#121212]">Orders</span>
           </Link>
           <Link
-            href="/profile"
+            href="/Pages/clients/Src/Pages/profile"
             className="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-[#FBF7F0]"
           >
             <FiUser className="w-5 h-5 text-[#121212]" />
@@ -77,10 +77,13 @@ export default function SidebarAfter() {
             <span className="text-[#121212]">Rewards</span>
           </button>
 
-          <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-[#FBF7F0]">
+          <Link
+            href="/Pages/clients/Src/Pages/supportpage"
+            className="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-[#FBF7F0]"
+          >
             <FiHelpCircle className="w-5 h-5 text-[#121212]" />
             <span className="text-[#121212]">Support</span>
-          </button>
+          </Link>
         </nav>
 
         {/* PROMO */}

@@ -37,7 +37,7 @@ export default function SidebarBefor() {
             <span className="font-medium">Home</span>
           </button>
           <Link
-            href="/menu"
+            href="/Pages/clients/Src/Pages/static-menu"
             className="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-[#FBF7F0]"
           >
             <FiMenu className="w-5 h-5 text-[#121212]" />
@@ -67,10 +67,13 @@ export default function SidebarBefor() {
             <span className="text-[#121212]">Wish List</span>
           </Link>
 
-          <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-[#FBF7F0]">
+          <Link
+            href="/Pages/clients/Src/Pages/nearbyPage"
+            className="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-[#FBF7F0] transition"
+          >
             <FiMapPin className="w-5 h-5 text-[#121212]" />
             <span className="text-[#121212]">Find Nearby</span>
-          </button>
+          </Link>
         </nav>
 
         {/* PROMO */}

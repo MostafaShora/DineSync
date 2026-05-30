@@ -1,5 +1,5 @@
 "use client";
-import { QRScanner } from "@/Src/Components/features/QRScanner";
+import { QRScanner } from "@/app/Pages/clients/Src/Components/features/QRScanner";
 
 export default function ScannerPage() {
   return (
@@ -8,4 +8,3 @@ export default function ScannerPage() {
     </div>
   );
 }
-  
