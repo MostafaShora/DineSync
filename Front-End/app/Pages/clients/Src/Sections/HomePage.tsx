@@ -6,12 +6,13 @@ import SidebarBefor from "../Components/features/SidebarBefor";
 import TopbarBefor from "../Components/features/TopbarBefor";
 import TopbarUser from "../Components/features/TopbarUser";
 import { useAuth } from "../context/AuthContext";
-import BestSellersSection from "./BestSellersSection";
-import CinematicCafeSection from "./CafeExperienceSection";
+import AboutSection from "./aboutSection";
 import HeroSection from "./HeroSection";
 import LocationSection from "./LocationSection";
-import RecommendedSection from "./RecommendedSection";
-import SeasonalSection from "./SeasonalSection";
+import FeaturedMenu from "./FeaturedMenu";
+import SpecialOffers from "./SpecialOffers";
+import Gallery from "./The-Café-Experience-Wall";
+import WhyChooseUs from "./WhyChooseUs";
 
 export default function HomePage() {
   const { user } = useAuth();
@@ -29,10 +30,11 @@ export default function HomePage() {
             {/* CENTER CONTENT */}
             <main className="flex-1 w-full space-y-6">
               <HeroSection />
-              <RecommendedSection />
-              <SeasonalSection />
-              <BestSellersSection />
-              <CinematicCafeSection />
+              <AboutSection />
+              <FeaturedMenu />
+              <SpecialOffers />
+              <WhyChooseUs />
+              <Gallery />
               <LocationSection />
             </main>
 

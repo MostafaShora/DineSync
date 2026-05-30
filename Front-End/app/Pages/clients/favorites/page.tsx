@@ -1,9 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import menu from "@/app/Pages/clients/Src/jsonData/menu.json";
+
 import { FiHeart, FiPlus } from "react-icons/fi";
 import { BsFillLeafFill } from "react-icons/bs";
+import menu from "@/jsonData/menu.json";
 import Image from "next/image";
 
 type MenuItem = (typeof menu.products)[number];
