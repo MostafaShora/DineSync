@@ -3,6 +3,8 @@ import cors from "cors";
 import { errorHandler, notFound } from "./MiddleWares/errorHandler.ts";
 import authRoutes from "./Routers/auth.routes.ts";
 import userRouter from "./Routers/user.routes.ts";
+import productRoutes from "./Routers/product.routes.ts";
+import categoryRoutes from "./Routers/category.routes.ts";
 
 const app = express();
 app.use(
@@ -18,6 +20,8 @@ app.use(express.json());
 //routers
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRouter);
+app.use("/api/products", productRoutes);
+app.use("/api/categories", categoryRoutes);
 // 404 handler
 app.use(notFound);
 

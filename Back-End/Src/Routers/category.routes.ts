@@ -1,11 +1,8 @@
 import { Router } from "express";
-import {
-    createCategory,
-    getCategories,
-    updateCategory,
-    deleteCategory,
-} from "../Controllers/category.controller";
-import { protect, adminOnly } from "../MiddleWares/auth.middleware";
+import { createCategory, deleteCategory, getCategories, updateCategory } from "../Controllers/category.controller.ts";
+import { adminOnly } from "../MiddleWares/adminOnly.ts";
+import { protect } from "../MiddleWares/protect.ts";
+
 
 const router = Router();
 

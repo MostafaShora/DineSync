@@ -1,10 +1,10 @@
 import mongoose, { Schema, Document } from "mongoose";
 import type { UserRole } from "../types/user.types.ts";
 
-
 export interface IUserDocument extends Document {
   name: string;
   email: string;
+  phone: string;
   password: string;
   role: UserRole;
   isBanned: boolean;
@@ -26,6 +26,10 @@ const userSchema = new Schema<IUserDocument>(
       lowercase: true,
       trim: true,
     },
+    phone: {
+      type: String,
+      unique: true,
+    },
     password: {
       type: String,
       required: [true, "Password is required"],
@@ -34,14 +38,14 @@ const userSchema = new Schema<IUserDocument>(
     role: {
       type: String,
       enum: ["user", "admin", "staff"],
-      default: "user",
+      default: "admin",
     },
     isBanned: {
       type: Boolean,
       default: false,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 const User = mongoose.model<IUserDocument>("User", userSchema);

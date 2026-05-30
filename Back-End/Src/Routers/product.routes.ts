@@ -1,12 +1,8 @@
 import { Router } from "express";
-import {
-    getAllProducts,
-    getProductById,
-    createProduct,
-    updateProduct,
-    deleteProduct,
-} from "../Controllers/product.controller";
-import { protect, adminOnly } from "../middlewares/auth.middleware";
+import { createProduct, deleteProduct, getAllProducts, getProductById, updateProduct } from "../Controllers/product.controller.ts";
+import { adminOnly } from "../MiddleWares/adminOnly.ts";
+import { protect } from "../MiddleWares/protect.ts";
+
 
 const router = Router();
 
