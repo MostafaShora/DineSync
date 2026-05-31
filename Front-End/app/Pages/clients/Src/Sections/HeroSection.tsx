@@ -1,4 +1,13 @@
-import { FiSearch, FiCoffee, FiGrid } from "react-icons/fi";
+import {
+  FiSearch,
+  FiCoffee,
+  FiGrid,
+  FiArrowRight,
+  FiShoppingBag,
+  FiTruck,
+  FiSmartphone,
+  FiMaximize,
+} from "react-icons/fi";
 import { MdOutlineLocalDrink } from "react-icons/md";
 import { FaIceCream } from "react-icons/fa";
 import { GiCroissant } from "react-icons/gi";
@@ -75,16 +84,21 @@ export default function HeroSection() {
 
             {/* CTA */}
             <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3">
-              <a
+              <Link
                 href="/Pages/scanner"
                 className="flex items-center justify-center gap-2 bg-[#E9D7BD] text-black px-5 sm:px-6 py-3 rounded-xl font-medium hover:scale-[1.02] transition"
               >
+                <FiMaximize size={18} />
                 Dine-in with QR
-              </a>
+              </Link>
 
-              <button className="flex items-center justify-center gap-2 bg-white border border-black/10 text-black px-5 sm:px-6 py-3 rounded-xl font-medium hover:bg-black/5 transition">
+              <Link
+                href="/Pages/clients/Src/Pages/grab-go"
+                className="flex items-center justify-center gap-2 bg-white border border-black/10 text-black px-5 sm:px-6 py-3 rounded-xl font-medium hover:bg-black/5 transition"
+              >
                 Grab & Go
-              </button>
+                <FiCoffee size={18} />
+              </Link>
             </div>
           </div>
         </div>
