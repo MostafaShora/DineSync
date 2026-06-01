@@ -99,6 +99,22 @@ export default function MenuPage() {
     });
   };
 
+  const submitOrder = async () => {
+    try {
+      const order = {
+        items: cart,
+        total,
+      };
+
+      await api.post("/orders", order);
+
+      setCart([]); 
+      alert("Order sent successfully");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   // =========================
   // CART ACTIONS
   // =========================
@@ -270,7 +286,10 @@ export default function MenuPage() {
                 <span>{total} EGP</span>
               </div>
 
-              <button className="w-full mt-5 bg-[#123A2B] text-white py-3 rounded-2xl">
+              <button
+                onClick={submitOrder}
+                className="w-full mt-5 bg-[#123A2B] text-white py-3 rounded-2xl"
+              >
                 Checkout
               </button>
             </>

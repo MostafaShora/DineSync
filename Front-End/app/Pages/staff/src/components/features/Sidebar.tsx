@@ -1,37 +1,29 @@
 "use client";
 
 import { BsFillLeafFill } from "react-icons/bs";
-import {
-  FiGrid,
-  FiShoppingBag,
-  FiUsers,
-  FiClipboard,
-  FiStar,
-  FiTrendingUp,
-  FiSettings,
-  FiTag,
-  FiLogOut,
-} from "react-icons/fi";
+import { FiPackage, FiHome, FiLogOut } from "react-icons/fi";
 
 import { useRouter } from "next/navigation";
 
-type AdminSidebarProps = {
+type StaffSidebarProps = {
   setPage: React.Dispatch<React.SetStateAction<string>>;
   page: string;
 };
 
-export default function AdminSidebar({ setPage, page }: AdminSidebarProps) {
+export default function StaffSidebar({ setPage, page }: StaffSidebarProps) {
   const router = useRouter();
 
   const navItems = [
-    { name: "Dashboard", key: "dashboard", icon: FiGrid },
-    { name: "Products", key: "products", icon: FiShoppingBag },
-    { name: "Orders", key: "orders", icon: FiClipboard },
-    { name: "Customers", key: "customers", icon: FiUsers },
-    { name: "Analytics", key: "analytics", icon: FiTrendingUp },
-    { name: "Reviews", key: "reviews", icon: FiStar },
-    { name: "Offers", key: "offers", icon: FiTag },
-    { name: "Settings", key: "settings", icon: FiSettings },
+    {
+      name: "Grab & Go",
+      key: "grab&go",
+      icon: FiPackage,
+    },
+    {
+      name: "Dine-In",
+      key: "dine-in",
+      icon: FiHome,
+    },
   ];
 
   const handleLogout = () => {
@@ -40,31 +32,54 @@ export default function AdminSidebar({ setPage, page }: AdminSidebarProps) {
   };
 
   return (
-    <aside className="w-70 shrink-0">
-      <div className="bg-[#EFE6D6]/70 rounded-2xl p-5 flex flex-col h-[calc(100vh-48px)] shadow-sm">
-        {/* LOGO */}
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-10 h-10 rounded-xl bg-[#123A2B]/10 grid place-items-center">
-            <BsFillLeafFill className="w-6 h-6 text-[#123A2B]" />
+    <aside className="w-72 shrink-0">
+      <div
+        className="
+          h-[calc(100vh-48px)]
+          rounded-[28px]
+          bg-white/40
+          backdrop-blur-xl
+          border border-white/30
+          shadow-[0_10px_40px_rgba(0,0,0,0.08)]
+          p-6
+          flex
+          flex-col
+        "
+      >
+        {/* Logo */}
+        <div className="flex items-center gap-4 mb-8">
+          <div
+            className="
+              w-12 h-12
+              rounded-2xl
+              bg-gradient-to-br
+              from-[#123A2B]
+              to-[#1D5B43]
+              grid
+              place-items-center
+              shadow-lg
+            "
+          >
+            <BsFillLeafFill className="w-6 h-6 text-white" />
           </div>
 
-          <div className="leading-tight">
-            <div className="font-serif text-[22px] font-bold text-[#121212]">
-              Dine
-            </div>
-            <div className="font-serif text-[18px] -mt-1 text-[#121212]/80">
-              Sync Admin
-            </div>
+          <div>
+            <h2 className="font-serif text-2xl font-bold text-[#121212]">
+              DineSync
+            </h2>
+            <p className="text-sm text-[#6B6B63]">Staff Dashboard</p>
           </div>
         </div>
 
-        {/* SECTION */}
-        <p className="text-[11px] tracking-[0.25em] text-[#6B6B63] mb-3">
-          MAIN MENU
-        </p>
+        {/* Section Label */}
+        <div className="mb-4">
+          <p className="text-[11px] tracking-[0.25em] uppercase text-[#7B7B73]">
+            Main Menu
+          </p>
+        </div>
 
-        {/* NAVIGATION */}
-        <nav className="space-y-2 flex-1">
+        {/* Navigation */}
+        <nav className="flex-1 space-y-2">
           {navItems.map((item) => {
             const isActive = page === item.key;
 
@@ -72,23 +87,45 @@ export default function AdminSidebar({ setPage, page }: AdminSidebarProps) {
               <button
                 key={item.key}
                 onClick={() => setPage(item.key)}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition
+                className={`
+                  relative
+                  group
+                  w-full
+                  flex
+                  items-center
+                  gap-4
+                  px-4
+                  py-3.5
+                  rounded-2xl
+                  transition-all
+                  duration-300
                   ${
                     isActive
-                      ? "bg-[#123A2B] text-white shadow-md"
-                      : "hover:bg-[#FBF7F0] text-[#121212]"
+                      ? "bg-gradient-to-r from-[#123A2B] to-[#1D5B43] text-white shadow-lg scale-[1.02]"
+                      : "text-[#121212] hover:bg-white/70 hover:translate-x-1"
                   }
                 `}
               >
+                {isActive && (
+                  <div className="absolute left-0 top-2 bottom-2 w-1 rounded-r-full bg-white" />
+                )}
+
                 <item.icon
-                  className={`w-5 h-5 ${
-                    isActive ? "text-white" : "text-[#121212]"
-                  }`}
+                  className={`
+                    w-5 h-5
+                    transition-all
+                    duration-300
+                    ${
+                      isActive
+                        ? "text-white"
+                        : "text-[#123A2B] group-hover:scale-110"
+                    }
+                  `}
                 />
 
                 <span
                   className={`text-sm ${
-                    isActive ? "font-medium text-white" : "text-[#121212]"
+                    isActive ? "font-medium" : "font-medium"
                   }`}
                 >
                   {item.name}
@@ -98,29 +135,68 @@ export default function AdminSidebar({ setPage, page }: AdminSidebarProps) {
           })}
         </nav>
 
-        {/* STATUS CARD */}
-        <div className="mt-4 rounded-xl bg-[#123A2B] text-white p-4">
-          <p className="text-[10px] text-white/70 tracking-widest">
-            ADMIN STATUS
+        {/* Status Card */}
+        <div
+          className="
+            mt-4
+            rounded-3xl
+            p-5
+            bg-gradient-to-br
+            from-[#123A2B]
+            to-[#1D5B43]
+            text-white
+            shadow-xl
+          "
+        >
+          <p className="text-[10px] tracking-[0.3em] uppercase text-white/70">
+            Staff Status
           </p>
 
-          <p className="mt-1 text-sm font-serif">All systems operational</p>
+          <div className="flex items-center gap-2 mt-3">
+            <span className="relative flex h-3 w-3">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-300 opacity-75" />
+              <span className="relative inline-flex h-3 w-3 rounded-full bg-green-400" />
+            </span>
 
-          <div className="mt-3 h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
-            <div className="h-full w-[85%] bg-white/60 rounded-full" />
+            <span className="text-sm font-medium">All Systems Operational</span>
+          </div>
+
+          <div className="mt-4 h-2 overflow-hidden rounded-full bg-white/10">
+            <div className="h-full w-[92%] rounded-full bg-gradient-to-r from-green-300 to-green-400" />
+          </div>
+
+          <div className="mt-2 flex justify-between text-xs text-white/70">
+            <span>Performance</span>
+            <span>92%</span>
           </div>
         </div>
 
-        {/* SIGN OUT */}
+        {/* Logout */}
         <button
           onClick={handleLogout}
-          className="mt-4 w-full flex items-center gap-3 px-4 py-3 rounded-xl 
-          bg-white/60 hover:bg-red-50 text-[#121212] hover:text-red-600
-          transition"
+          className="
+            mt-4
+            w-full
+            flex
+            items-center
+            justify-center
+            gap-3
+            px-4
+            py-3.5
+            rounded-2xl
+            border
+            border-red-100
+            bg-red-50
+            text-red-600
+            transition-all
+            duration-300
+            hover:bg-red-500
+            hover:text-white
+            hover:shadow-lg
+          "
         >
           <FiLogOut className="w-5 h-5" />
-
-          <span className="text-sm font-medium">Sign Out</span>
+          <span className="text-sm font-semibold">Sign Out</span>
         </button>
       </div>
     </aside>

@@ -3,15 +3,7 @@
 import { useState } from "react";
 
 import AdminSidebar from "../components/features/Sidebar";
-
-import AdminDashboardPage from "../Pages/dashboard/page";
-import AdminProductsPage from "../Pages/products/page";
-import AdminOrdersPage from "../Pages/orders/page";
-import AdminCustomersPage from "../Pages/customers/page";
-import AdminAnalyticsPage from "../Pages/analytics/page";
-import AdminReviewsPage from "../Pages/reviews/page";
-import AdminOffersPage from "../Pages/offers/page";
-import AdminSettingsPage from "../Pages/settings/page";
+import GrabAndGoPage from "../Pages/grab-go/page";
 
 export default function HomeAdmin() {
   const [page, setPage] = useState("dashboard");
@@ -27,21 +19,7 @@ export default function HomeAdmin() {
 
           {/* CONTENT */}
           <main className="flex-1">
-            {page === "dashboard" && <AdminDashboardPage />}
-
-            {page === "products" && <AdminProductsPage />}
-
-            {page === "orders" && <AdminOrdersPage />}
-
-            {page === "customers" && <AdminCustomersPage />}
-
-            {page === "analytics" && <AdminAnalyticsPage />}
-
-            {page === "reviews" && <AdminReviewsPage />}
-
-            {page === "offers" && <AdminOffersPage />}
-
-            {page === "settings" && <AdminSettingsPage />}
+            {page === "grab&go" && <GrabAndGoPage />}
           </main>
         </div>
       </div>
