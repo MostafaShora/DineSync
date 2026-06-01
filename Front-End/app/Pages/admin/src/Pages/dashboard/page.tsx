@@ -70,24 +70,54 @@ export default function AdminDashboardPage() {
         {/* MAIN CONTENT */}
         <main className="flex-1">
           {/* HEADER */}
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <h1 className="font-serif text-[38px] text-[#1C1C1A] font-bold">
-                Dashboard
-              </h1>
+          <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-10">
+            {/* glow background */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#123A2B]/10 via-transparent to-[#123A2B]/10 blur-3xl rounded-3xl" />
 
-              <p className="text-[#6B6B63] mt-1">
-                Welcome back, manage your restaurant efficiently.
-              </p>
+            <div className="relative flex flex-col md:flex-row md:items-center md:justify-between w-full p-6 md:p-8 rounded-3xl bg-white/40 backdrop-blur-2xl border border-white/40 shadow-[0_10px_40px_rgba(0,0,0,0.08)]">
+              {/* LEFT SIDE */}
+              <div className="space-y-2">
+                {/* badge */}
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#123A2B]/10 text-[#123A2B] text-xs font-medium">
+                  <span className="w-2 h-2 rounded-full bg-[#123A2B] animate-pulse" />
+                  Restaurant Panel
+                </div>
+
+                {/* title */}
+                <h1 className="font-serif text-[38px] md:text-[44px] text-[#1C1C1A] font-bold tracking-tight">
+                  Dashboard
+                </h1>
+
+                {/* subtitle */}
+                <p className="text-[#6B6B63] mt-1 text-sm md:text-base">
+                  Welcome back, manage your restaurant efficiently.
+                </p>
+              </div>
+
+              {/* RIGHT ACTION */}
+              <button
+                className="
+        group
+        relative
+        overflow-hidden
+        bg-[#123A2B]
+        text-white
+        px-6 py-3
+        rounded-2xl
+        shadow-lg
+        hover:shadow-2xl
+        transition
+        flex items-center gap-2
+      "
+              >
+                {/* glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition duration-700" />
+
+                <FiArrowUpRight className="relative z-10 group-hover:rotate-45 transition" />
+
+                <span className="relative z-10">View Reports</span>
+              </button>
             </div>
-
-            <button
-              className="bg-[#123A2B] text-white px-5 py-3 rounded-2xl
-              hover:bg-[#0F2F23] transition flex items-center gap-2 shadow-soft"
-            >
-              <FiArrowUpRight />
-              View Reports
-            </button>
           </div>
 
           {/* STATS */}

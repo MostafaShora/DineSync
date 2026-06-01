@@ -89,6 +89,8 @@ export default function LoginPage() {
       // =========================
       if (user.role === "admin") {
         router.push("/Pages/admin/src/libs");
+      } else if (user.role === "staff") {
+        router.push("/Pages/staff/src/libs");
       } else {
         router.push("/");
       }

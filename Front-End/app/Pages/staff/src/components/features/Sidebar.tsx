@@ -1,37 +1,29 @@
 "use client";
 
 import { BsFillLeafFill } from "react-icons/bs";
-import {
-  FiGrid,
-  FiShoppingBag,
-  FiUsers,
-  FiClipboard,
-  FiStar,
-  FiTrendingUp,
-  FiSettings,
-  FiTag,
-  FiLogOut,
-} from "react-icons/fi";
+import { FiPackage, FiHome, FiLogOut } from "react-icons/fi";
 
 import { useRouter } from "next/navigation";
 
-type AdminSidebarProps = {
+type StaffSidebarProps = {
   setPage: React.Dispatch<React.SetStateAction<string>>;
   page: string;
 };
 
-export default function AdminSidebar({ setPage, page }: AdminSidebarProps) {
+export default function StaffSidebar({ setPage, page }: StaffSidebarProps) {
   const router = useRouter();
 
   const navItems = [
-    { name: "Dashboard", key: "dashboard", icon: FiGrid },
-    { name: "Products", key: "products", icon: FiShoppingBag },
-    { name: "Orders", key: "orders", icon: FiClipboard },
-    { name: "Customers", key: "customers", icon: FiUsers },
-    { name: "Analytics", key: "analytics", icon: FiTrendingUp },
-    { name: "Reviews", key: "reviews", icon: FiStar },
-    { name: "Offers", key: "offers", icon: FiTag },
-    { name: "Settings", key: "settings", icon: FiSettings },
+    {
+      name: "Grab & Go",
+      key: "grab&go",
+      icon: FiPackage,
+    },
+    {
+      name: "Dine-In",
+      key: "dine-in",
+      icon: FiHome,
+    },
   ];
 
   const handleLogout = () => {
@@ -49,13 +41,11 @@ export default function AdminSidebar({ setPage, page }: AdminSidebarProps) {
             <BsFillLeafFill className="w-6 h-6 text-[#123A2B]" />
           </div>
 
-          <div className="leading-tight">
-            <div className="font-serif text-[22px] font-bold text-[#121212]">
-              Dine
-            </div>
-            <div className="font-serif text-[18px] -mt-1 text-[#121212]/80">
-              Sync Admin
-            </div>
+          <div>
+            <h2 className="font-serif text-2xl font-bold text-[#121212]">
+              DineSync
+            </h2>
+            <p className="text-sm text-[#6B6B63]">Staff Dashboard</p>
           </div>
         </div>
 
@@ -81,6 +71,10 @@ export default function AdminSidebar({ setPage, page }: AdminSidebarProps) {
                   }
                 `}
               >
+                {isActive && (
+                  <div className="absolute left-0 top-2 bottom-2 w-1 rounded-r-full bg-white" />
+                )}
+
                 <item.icon
                   className={`w-6 h-6 md:w-5 md:h-5 transition-colors ${
                     isActive ? "text-[#123A2B] md:text-white" : "text-[#6B6B63] md:text-[#121212]"

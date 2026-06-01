@@ -1,4 +1,5 @@
 "use client";
+
 import Link from "next/link";
 import { BsFillLeafFill } from "react-icons/bs";
 import {
@@ -13,6 +14,12 @@ import {
 } from "react-icons/fi";
 
 export default function SidebarAfter() {
+  const itemClass =
+    "group flex items-center gap-3 px-4 py-3 rounded-2xl transition-all duration-300 hover:bg-white/70 hover:translate-x-1";
+
+  const iconClass =
+    "w-5 h-5 text-[#123A2B] group-hover:scale-110 transition-transform";
+
   return (
     // شيلنا <aside> من هنا لأننا حاطينه في الـ HomePage خلاص عشان ميبقاش تكرار
     <div className="flex flex-row items-center w-full h-[70px] px-2 lg:bg-[#EFE6D6]/70 lg:rounded-2xl lg:p-5 lg:flex-col lg:h-[calc(100vh-48px)] lg:shadow-sm">

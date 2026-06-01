@@ -50,20 +50,52 @@ export default function AdminCustomersPage() {
   return (
     <div className="space-y-6 m-10">
       {/* HEADER */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        <div>
-          <h1 className="text-3xl font-serif text-[#123A2B] font-bold">
-            Customers Management
-          </h1>
+      <div className="relative mb-10">
+        {/* glow background */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#123A2B]/10 via-transparent to-[#123A2B]/10 blur-3xl rounded-3xl" />
 
-          <p className="text-[#6B6B63] mt-1">
-            Manage and track all customer accounts.
-          </p>
+        <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-6 p-6 md:p-8 rounded-3xl bg-white/40 backdrop-blur-2xl border border-white/40 shadow-[0_10px_40px_rgba(0,0,0,0.08)]">
+          {/* LEFT SIDE */}
+          <div className="space-y-2">
+            {/* badge */}
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#123A2B]/10 text-[#123A2B] text-xs font-medium">
+              <span className="w-2 h-2 rounded-full bg-[#123A2B] animate-pulse" />
+              CRM Panel
+            </div>
+
+            {/* title */}
+            <h1 className="text-3xl md:text-4xl font-serif text-[#123A2B] font-bold tracking-tight">
+              Customers Management
+            </h1>
+
+            {/* subtitle */}
+            <p className="text-[#6B6B63] mt-1 text-sm md:text-base">
+              Manage and track all customer accounts.
+            </p>
+          </div>
+
+          {/* RIGHT ACTION */}
+          <button
+            className="
+        group
+        relative
+        overflow-hidden
+        px-6 py-3
+        rounded-2xl
+        bg-[#123A2B]
+        text-white
+        shadow-lg
+        hover:shadow-2xl
+        transition
+        flex items-center gap-2
+      "
+          >
+            {/* shine effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition duration-700" />
+
+            <span className="relative z-10">Add Customer</span>
+          </button>
         </div>
-
-        <button className="px-5 py-3 rounded-2xl bg-[#123A2B] text-white hover:bg-[#0F2F23] transition shadow-md">
-          Add Customer
-        </button>
       </div>
 
       {/* STATS */}

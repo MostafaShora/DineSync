@@ -12,6 +12,12 @@ import {
 } from "react-icons/fi";
 
 export default function SidebarBefor() {
+  const itemClass =
+    "group flex items-center gap-3 px-4 py-3 rounded-2xl transition-all duration-300 hover:bg-white/70 hover:translate-x-1";
+
+  const iconClass =
+    "w-5 h-5 text-[#123A2B] group-hover:scale-110 transition-transform";
+
   return (
     // الحاوية الأساسية: بالعرض في الموبايل (h-[70px]) وبالطول في الكمبيوتر
     <div className="flex flex-row items-center w-full h-[70px] px-2 lg:bg-[#EFE6D6]/70 lg:rounded-2xl lg:p-6 lg:flex-col lg:min-h-[calc(100vh-48px)]">
