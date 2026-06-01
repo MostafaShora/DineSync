@@ -48,23 +48,55 @@ export default function AdminOffersPage() {
   return (
     <div className="space-y-6 m-10">
       {/* HEADER */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        <div>
-          <h1 className="text-3xl font-serif text-[#123A2B] font-bold">
-            Offers & Promotions
-          </h1>
+      <div className="relative mb-10">
+        {/* glow background */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#123A2B]/10 via-transparent to-[#123A2B]/10 blur-3xl rounded-3xl" />
 
-          <p className="text-[#6B6B63] mt-1">
-            Create and manage discounts and special deals.
-          </p>
+        <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-6 p-6 md:p-8 rounded-3xl bg-white/40 backdrop-blur-2xl border border-white/40 shadow-[0_10px_40px_rgba(0,0,0,0.08)]">
+          {/* LEFT SIDE */}
+          <div className="space-y-2">
+            {/* badge */}
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#123A2B]/10 text-[#123A2B] text-xs font-medium">
+              <span className="w-2 h-2 rounded-full bg-[#123A2B] animate-pulse" />
+              Marketing Panel
+            </div>
+
+            {/* title */}
+            <h1 className="text-3xl md:text-4xl font-serif text-[#123A2B] font-bold tracking-tight">
+              Offers & Promotions
+            </h1>
+
+            {/* subtitle */}
+            <p className="text-[#6B6B63] mt-1 text-sm md:text-base">
+              Create and manage discounts and special deals.
+            </p>
+          </div>
+
+          {/* RIGHT ACTION */}
+          <button
+            className="
+        group
+        relative
+        overflow-hidden
+        flex items-center gap-2
+        px-6 py-3
+        rounded-2xl
+        bg-[#123A2B]
+        text-white
+        shadow-lg
+        hover:shadow-2xl
+        transition
+      "
+          >
+            {/* shine animation */}
+            <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition duration-700" />
+
+            <FiPlus className="relative z-10" />
+
+            <span className="relative z-10">New Offer</span>
+          </button>
         </div>
-
-        <button className="flex items-center gap-2 px-5 py-3 rounded-2xl bg-[#123A2B] text-white hover:bg-[#0F2F23] transition shadow-md">
-          <FiPlus />
-          New Offer
-        </button>
       </div>
-
       {/* STATS */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="bg-white rounded-2xl p-5 border border-[#E8E2D5] shadow-sm">
