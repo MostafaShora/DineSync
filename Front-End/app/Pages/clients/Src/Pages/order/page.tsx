@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useSearchParams } from "next/navigation";
+// import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { FiPlus, FiMinus, FiShoppingCart } from "react-icons/fi";
 
@@ -19,10 +19,9 @@ const ITEMS: Item[] = [
 ];
 
 export default function MenuPage() {
-  const searchParams = useSearchParams();
-  const tableId = searchParams.get("table");
+  const tableId = "12";
 
-  const [cart, setCart] = useState<Record<number, number>>({}); // id -> qty
+  const [cart, setCart] = useState<Record<number, number>>({});
 
   const add = (id: number) => {
     setCart((prev) => ({
