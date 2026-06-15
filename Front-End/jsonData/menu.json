@@ -93,7 +93,7 @@
       "id": 9,
       "name": "Cold Brew",
       "category": "cold-drinks",
-      "price": `100`,
+      "price": 100,
       "image": "https://images.unsplash.com/photo-1461988320302-91bde64fc8e4",
       "description": "Slow brewed coffee served cold"
     },
