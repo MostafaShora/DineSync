@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { FiHeart, FiPlus, FiShoppingBag } from "react-icons/fi";
 import { BsFillLeafFill } from "react-icons/bs";
-import menu from "@/app/Pages/clients/Src/jsonData/menu.json";
+import menu from "@/jsonData/menu.json";
 
 type CartItem = {
   id: number;
